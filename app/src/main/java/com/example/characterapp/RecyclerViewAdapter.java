@@ -59,10 +59,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public List<String> getmData() {
-        return mData;
-    }
-
     // total number of rows
     @Override
     public int getItemCount() {

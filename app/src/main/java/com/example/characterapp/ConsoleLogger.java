@@ -7,5 +7,4 @@ public class ConsoleLogger extends Logger{
         System.out.println("E " + tag + ": " + message);
     }
 
-    // similar for other methods
 }

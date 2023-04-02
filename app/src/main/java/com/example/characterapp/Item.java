@@ -1,5 +1,7 @@
 package com.example.characterapp;
 
+import androidx.annotation.NonNull;
+
 public class Item {
     private final String name;
     private String currentMessage = "";
@@ -12,6 +14,26 @@ public class Item {
         this.isUpdated = false;
     }
 
+    // Override equals() to compare two Item objects based on their field values
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Item))
+            return false;
+
+        Item other = (Item) obj;
+        return this.name.equals(other.name) && this.currentMessage.equals(other.currentMessage);
+    }
+
+    // Override hashCode() to ensure objects' hash codes are the same when compared for equality
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.currentMessage.hashCode();
+        return result;
+    }
+
+    @NonNull
     @Override
     public String toString() {
         return ("Name: " + name + ", " + "Message: " + currentMessage);

@@ -1,7 +1,5 @@
 package com.example.characterapp;
 
-//import com.example.characterapp.ExcelUtils;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -42,12 +40,19 @@ public class MainActivity extends AppCompatActivity implements ClickListener {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initExcelUtils();
+        initRecyclerViewAdapter();
+    }
+
+    public void initExcelUtils() {
         // Read Excel file and provide data to populate the RecyclerView
         ExcelUtils workbook = new ExcelUtils();
         m_data = workbook.readExcelData(MainActivity.this, "contacts_info.xls");
         m_data.get(0).forEach(contactNames::addAll);
         otherData = m_data.get(1);
+    }
 
+    public void initRecyclerViewAdapter() {
         // Set up the RecyclerView
         recyclerView = findViewById(R.id.rvContacts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -82,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements ClickListener {
                 })
                 .setNeutralButton("Clear", (dialog, which) -> {
                     view.setBackgroundColor(Color.TRANSPARENT);
-//                    view.findViewById(R.id.btnNotes).setBackgroundColor(Color.TRANSPARENT);
                     m_text = "";
                     item.setAlertDialogMessage(m_text);
                     dialog.dismiss();

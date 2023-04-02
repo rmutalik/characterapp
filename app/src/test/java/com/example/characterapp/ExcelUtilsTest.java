@@ -19,7 +19,7 @@ public class ExcelUtilsTest {
     static Context mockContext = mock(Context.class);
     static ExcelUtils mockExcel = mock(ExcelUtils.class);
 
-    public static List<List<List<String>>> readExcelData() {
+    private static List<List<List<String>>> readExcelData() {
         when(mockExcel.readExcelData(mockContext, "contacts_info.xls"))
                 .thenReturn(List.of(
                         List.of(List.of("Chuck Bartowski"), List.of("Sarah Walker"), List.of("John Casey"), List.of("Diane Beckman"), List.of("Bryce Larkin"),

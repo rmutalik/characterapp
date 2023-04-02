@@ -3,7 +3,6 @@ package com.example.characterapp;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -39,7 +38,6 @@ public class ExcelUtils {
         // Returns list of concatenated first and last names, as well as the other data
         cellValues.add(nameValues);
         cellValues.add(otherValues);
-        System.out.println(cellValues);
         return cellValues;
     }
 
@@ -51,10 +49,8 @@ public class ExcelUtils {
             workbook = new XSSFWorkbook(fileInputStream);
             sheet = workbook.getSheetAt(SHEET_INDEX);
         } catch (IOException e) {
-//            Log.e(TAG, "Error Reading Exception: ", e);
             logger.e(TAG, "Error Reading Exception: ", e);
         } catch (Exception e) {
-//            Log.e(TAG, "Failed to read file due to Exception: ", e);
             logger.e(TAG, "Failed to read file due to Exception: ", e);
         } finally {
             // Close filestream to avoid resource leaks
