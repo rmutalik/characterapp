@@ -95,14 +95,19 @@ public class MainActivityTest {
     @Test
     @UiThreadTest
     public void onItemClick_setPositiveButton_success() {
+        System.out.println("Entered method");
         rule.getScenario().onActivity(activity -> {
+            System.out.println("Entered activity");
             new Thread(() -> {
                 // BUG: Code below doesn't actually do anything; test passes regardless. Possibly due to new Thread?
-                Espresso.onView(ViewMatchers.withId(R.id.rvContacts))
-                        .perform(RecyclerViewActions.actionOnItemAtPosition(-1, ViewActions.click()));
+                System.out.println("Entered thread");
+                Espresso.onView(ViewMatchers.withText("Chuck Bartowski")).perform(ViewActions.click());
+                System.out.println("View clicked");
+    //                Espresso.onView(ViewMatchers.withId(R.id.rvContacts))
+    //                        .perform(RecyclerViewActions.actionOnItemAtPosition(-1, ViewActions.click()));
 
-//                Espresso.onView(ViewMatchers.withId(R.id.contactName))
-//                        .check(ViewAssertions.matches(ViewMatchers.withText("Item clicked!")));
+                Espresso.onView(ViewMatchers.withText("Sarah Walker"))
+                        .check(ViewAssertions.matches(ViewMatchers.withText("Item clicked!")));
             });
         });
     }
